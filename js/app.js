@@ -162,18 +162,26 @@
   }, true);
 
   // Tema claro/escuro
+  // A página sempre abre no tema claro; o escuro só liga quando o visitante clica no botão.
   var root = document.documentElement;
   var themeBtn = document.getElementById("theme-toggle");
-  try {
-    var saved = localStorage.getItem("bio-theme");
-    if (saved) root.setAttribute("data-theme", saved);
-  } catch (e) {}
+  var themeMeta = document.querySelector('meta[name="theme-color"]');
+  var ICON_MOON = '<path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.39 5.39 0 0 1-4.4 2.26 5.4 5.4 0 0 1-3.14-9.8A9 9 0 0 0 12 3z"/>';
+  var ICON_SUN = '<g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></g>';
+  try { localStorage.removeItem("bio-theme"); } catch (e) {} // limpa preferência de versões antigas
+
+  function applyTheme(theme) {
+    var dark = theme === "dark";
+    if (dark) root.setAttribute("data-theme", "dark");
+    else root.removeAttribute("data-theme");
+    themeBtn.querySelector("svg").innerHTML = dark ? ICON_SUN : ICON_MOON;
+    themeBtn.setAttribute("aria-label", dark ? "Ativar tema claro" : "Ativar tema escuro");
+    themeBtn.setAttribute("aria-pressed", String(dark));
+    if (themeMeta) themeMeta.setAttribute("content", dark ? "#0d0f14" : "#f5f6fa");
+  }
+  applyTheme("light");
   themeBtn.addEventListener("click", function () {
-    var current = root.getAttribute("data-theme") ||
-      (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
-    var next = current === "dark" ? "light" : "dark";
-    root.setAttribute("data-theme", next);
-    try { localStorage.setItem("bio-theme", next); } catch (e) {}
+    applyTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark");
   });
 
   // Compartilhar

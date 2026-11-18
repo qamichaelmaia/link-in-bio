@@ -1,35 +1,28 @@
 :root {
-  --bg: #0d0f14;
-  --surface: #161922;
-  --surface-2: #1d2130;
-  --border: #272c3b;
-  --text: #f2f3f7;
-  --muted: #a3a8b8;
-  --accent: #7c5cff;
-  --accent-2: #22d3ee;
-  --thumb-bg: #ffffff;
-  --shadow: 0 8px 24px rgba(0, 0, 0, .35);
-  --radius: 16px;
-}
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) {
-    --bg: #f5f6fa;
-    --surface: #ffffff;
-    --surface-2: #f0f1f6;
-    --border: #e2e4ec;
-    --text: #151821;
-    --muted: #5d6375;
-    --shadow: 0 8px 24px rgba(20, 24, 40, .08);
-  }
-}
-:root[data-theme="light"] {
+  /* Tema claro (padrão) */
   --bg: #f5f6fa;
   --surface: #ffffff;
   --surface-2: #f0f1f6;
   --border: #e2e4ec;
   --text: #151821;
   --muted: #5d6375;
+  --accent: #7c5cff;
+  --accent-2: #22d3ee;
+  --thumb-bg: #ffffff;
   --shadow: 0 8px 24px rgba(20, 24, 40, .08);
+  --radius: 16px;
+  color-scheme: light;
+}
+/* Tema escuro: só quando o visitante clica no botão de tema */
+:root[data-theme="dark"] {
+  --bg: #0d0f14;
+  --surface: #161922;
+  --surface-2: #1d2130;
+  --border: #272c3b;
+  --text: #f2f3f7;
+  --muted: #a3a8b8;
+  --shadow: 0 8px 24px rgba(0, 0, 0, .35);
+  color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -149,23 +142,17 @@ a { color: inherit; text-decoration: none; }
   border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
 }
 .tag--twitch {
-  color: #a970ff;
+  color: #7a2ff7;
   background: color-mix(in srgb, #9146ff 16%, transparent);
   border-color: color-mix(in srgb, #9146ff 40%, transparent);
 }
+:root[data-theme="dark"] .tag--twitch { color: #a970ff; }
 /* Estilo dos "topics" do GitHub */
-.tag--github {
+.tag--github { color: #0969da; background: #ddf4ff; border-color: #b6e3ff; }
+:root[data-theme="dark"] .tag--github {
   color: #4493f8;
   background: rgba(56, 139, 253, .12);
   border-color: rgba(56, 139, 253, .3);
-}
-:root[data-theme="light"] .tag--github { color: #0969da; background: #ddf4ff; border-color: #b6e3ff; }
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) .tag--github { color: #0969da; background: #ddf4ff; border-color: #b6e3ff; }
-}
-:root[data-theme="light"] .tag--twitch { color: #7a2ff7; }
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) .tag--twitch { color: #7a2ff7; }
 }
 .link__arrow { width: 20px; height: 20px; color: var(--muted); flex: none; }
 
