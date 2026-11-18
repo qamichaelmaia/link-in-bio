@@ -53,7 +53,12 @@
       : '<span class="link__thumb link__thumb--icon brand--' + esc(l.icon) + '">' + svg(l.icon) + "</span>";
     return '<a class="link" ' + ext(l.url) + ">" + media +
       '<span class="link__text"><span class="link__title">' + esc(l.title) + "</span>" +
-      (l.subtitle ? '<span class="link__sub">' + esc(l.subtitle) + "</span>" : "") + "</span>" +
+      (l.subtitle ? '<span class="link__sub">' + esc(l.subtitle) + "</span>" : "") +
+      (l.tags && l.tags.length
+        ? '<span class="tags">' + l.tags.map(function (t) {
+            return '<span class="tag tag--' + esc(l.icon || "default") + '">' + esc(t) + "</span>";
+          }).join("") + "</span>"
+        : "") + "</span>" +
       '<svg class="link__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
       "</a>";
   }).join("");
