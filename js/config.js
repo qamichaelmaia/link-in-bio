@@ -46,7 +46,9 @@ window.BIO_CONFIG = {
       title: "GitHub",
       subtitle: "Projetos e repositórios",
       url: "https://github.com/qamichaelmaia",
-      icon: "github"
+      icon: "github",
+      // Tipos de projetos no GitHub (estilo de "topics" do GitHub)
+      tags: ["API", "Web", "Mobile", "Performance", "Documentação", "Comunidade"]
     },
     {
       title: "LinkedIn",
