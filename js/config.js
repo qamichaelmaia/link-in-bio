@@ -33,7 +33,7 @@ window.BIO_CONFIG = {
       url: "https://www.twitch.tv/maiaqa",
       icon: "twitch",
       // Jogos mais recentes nas lives (aparecem como etiquetas no botão)
-      tags: ["GTA 6"]
+      tags: ["GTA 6", "LoL", "ARC Raiders", "REPO"]
     },
     {
       title: "GitHub",
