@@ -71,6 +71,35 @@
       "</a>";
   }).join("");
 
+  // Tags em 1 linha: esconde as últimas que não cabem e mostra "+N" no lugar
+  function fitTags() {
+    Array.prototype.forEach.call(document.querySelectorAll(".tags"), function (row) {
+      var old = row.querySelector(".tag--more");
+      if (old) old.remove();
+      var tags = Array.prototype.slice.call(row.querySelectorAll(".tag"));
+      tags.forEach(function (t) { t.hidden = false; });
+      if (row.scrollWidth <= row.clientWidth) return;
+
+      var more = document.createElement("span");
+      more.className = "tag tag--more";
+      row.appendChild(more);
+      var n = 0;
+      do {
+        n++;
+        tags[tags.length - n].hidden = true;
+        more.textContent = "+" + n;
+      } while (row.scrollWidth > row.clientWidth && n < tags.length - 1);
+      more.title = tags.slice(tags.length - n).map(function (t) { return t.textContent; }).join(", ");
+    });
+  }
+  fitTags();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitTags);
+  var fitTimer;
+  window.addEventListener("resize", function () {
+    clearTimeout(fitTimer);
+    fitTimer = setTimeout(fitTags, 100);
+  });
+
   // Meu Setup
   function storeOf(url) {
     if (/aliexpress/i.test(url)) return { key: "ali", label: "AliExpress" };
