@@ -29,7 +29,7 @@ window.BIO_CONFIG = {
   links: [
     {
       title: "Twitch",
-      subtitle: "Lives de games e bate-papo sobre QA",
+      subtitle: "Lives de games e QA",
       url: "https://www.twitch.tv/maiaqa",
       icon: "twitch",
       // Jogos mais recentes nas lives (aparecem como etiquetas no botão).
