@@ -56,7 +56,15 @@
       (l.subtitle ? '<span class="link__sub">' + esc(l.subtitle) + "</span>" : "") +
       (l.tags && l.tags.length
         ? '<span class="tags">' + l.tags.map(function (t) {
-            return '<span class="tag tag--' + esc(l.icon || "default") + '">' + esc(t) + "</span>";
+            // Aceita texto simples ("GTA 6") ou objeto { label, bg, color, border }
+            if (typeof t === "string") t = { label: t };
+            var style = "";
+            if (t.bg) style += "background:" + t.bg + ";";
+            if (t.color) style += "color:" + t.color + ";";
+            if (t.border) style += "border-color:" + t.border + ";";
+            var custom = style ? " tag--custom" : " tag--" + esc(l.icon || "default");
+            return '<span class="tag' + custom + '"' + (style ? ' style="' + esc(style) + '"' : "") + ">" +
+              esc(t.label) + "</span>";
           }).join("") + "</span>"
         : "") + "</span>" +
       '<svg class="link__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +

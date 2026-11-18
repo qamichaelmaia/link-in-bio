@@ -32,8 +32,15 @@ window.BIO_CONFIG = {
       subtitle: "Lives de games e QA",
       url: "https://www.twitch.tv/maiaqa",
       icon: "twitch",
-      // Jogos mais recentes nas lives (aparecem como etiquetas no botão)
-      tags: ["GTA 6", "LoL", "ARC Raiders", "REPO"]
+      // Jogos mais recentes nas lives (aparecem como etiquetas no botão).
+      // Use só o nome ("Minecraft") para a cor padrão da Twitch, ou um objeto com cores próprias:
+      //   bg = fundo (cor ou gradiente), color = cor do texto, border = cor da borda
+      tags: [
+        { label: "GTA 6",       bg: "linear-gradient(90deg, #ff2e88, #ff7a3d)", color: "#ffffff", border: "#ff4f7b" },
+        { label: "LoL",         bg: "#0a1428", color: "#c8aa6e", border: "#c8aa6e" },
+        { label: "ARC Raiders", bg: "linear-gradient(#15171c, #15171c) padding-box, linear-gradient(90deg, #e63a2e, #f39a1e, #f5d020, #3fae49, #2f7fd1) border-box", color: "#ffffff", border: "transparent" },
+        { label: "REPO",        bg: "#ffb400", color: "#1a1300", border: "#ffb400" }
+      ]
     },
     {
       title: "GitHub",
